@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 sbOne.setProgress(sbOne.getProgress() + one);
                 sbTwo.setProgress(sbOne.getProgress() + two);
                 sbThree.setProgress(sbOne.getProgress() + three);
-//                sbFour.setProgress(sbOne.getProgress() + four);
+                sbFour.setProgress(sbOne.getProgress() + four);
             }
 
             @Override
