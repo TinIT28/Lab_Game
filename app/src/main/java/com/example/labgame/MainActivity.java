@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 int one = random.nextInt(number);
                 int two = random.nextInt(number);
                 int three = random.nextInt(number);
-//                int four = random.nextInt(number);
+                int four = random.nextInt(number);
 
                 if (sbOne.getProgress() >= sbOne.getMax()) {
                     this.cancel();
