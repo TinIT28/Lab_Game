@@ -125,7 +125,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="100"
+                android:text="0"
                 android:textColor="#f4af3c"
                 android:background="@drawable/border"
                 android:textSize="35sp" />
@@ -204,6 +204,7 @@
 
         <SeekBar
             android:id="@+id/seekBarFour"
+            android:progressDrawable="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -213,6 +214,7 @@
             android:paddingStart="40dp"
             />
         <SeekBar
+            android:progressDrawable="@android:color/transparent"
             android:id="@+id/seekBarThree"
             android:layout_above="@+id/seekBarFour"
             android:layout_toRightOf="@+id/checkBoxThree"
@@ -225,6 +227,7 @@
             />
         <SeekBar
             android:id="@+id/seekBarTwo"
+            android:progressDrawable="@android:color/transparent"
             android:layout_above="@+id/seekBarThree"
             android:layout_toRightOf="@+id/checkBoxTwo"
             android:layout_width="match_parent"
@@ -236,6 +239,7 @@
             />
         <SeekBar
             android:id="@+id/seekBarOne"
+            android:progressDrawable="@android:color/transparent"
             android:layout_above="@+id/seekBarTwo"
             android:layout_toRightOf="@+id/checkBoxOne"
             android:layout_width="match_parent"

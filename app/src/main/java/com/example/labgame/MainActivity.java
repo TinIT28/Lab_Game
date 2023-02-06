@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +19,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView txtCoin;
+    private TextView txtCoin, txtBet;
     private EditText edTextBet;
     private Button btnStart, btnReset;
+    private ImageView imgWinner;
     private CheckBox cbOne, cbTwo, cbThree, cbFour;
     private SeekBar sbOne, sbTwo, sbThree, sbFour;
     private int bet = 0;
@@ -31,14 +33,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mapping();
+        sbOne.setEnabled(false);
+        sbTwo.setEnabled(false);
+        sbThree.setEnabled(false);
+        sbFour.setEnabled(false);
+
         String coinString = txtCoin.getText().toString();
         coin = Integer.parseInt(coinString);
 
 
-        CountDownTimer countDownTimer = new CountDownTimer(30000, 100) {
+        CountDownTimer countDownTimer = new CountDownTimer(60000, 300) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int number = 2;
+                int number = 5;
                 Random random = new Random();
                 int one = random.nextInt(number);
                 int two = random.nextInt(number);
@@ -51,12 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
                     if (cbOne.isChecked()) {
                         coin += bet;
+                        imgWinner.setImageResource(R.drawable.duck60);
                         Toast.makeText(MainActivity.this, "You guessed correctly!", Toast.LENGTH_SHORT).show();
                     } else {
                         coin -= bet;
                         Toast.makeText(MainActivity.this, "You guessed wrong!", Toast.LENGTH_SHORT).show();
                     }
                     txtCoin.setText(coin + "");
+                    enableCheckbox();
                 }
 
                 if (sbTwo.getProgress() >= sbTwo.getMax()) {
@@ -65,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (cbTwo.isChecked()) {
                         coin += bet;
+                        imgWinner.setImageResource(R.drawable.dog_green60);
                         Toast.makeText(MainActivity.this, "You guessed correctly!", Toast.LENGTH_SHORT).show();
                     } else {
                         coin -= bet;
@@ -72,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     txtCoin.setText(coin + "");
+                    enableCheckbox();
                 }
 
                 if (sbThree.getProgress() >= sbThree.getMax()) {
@@ -80,12 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
                     if (cbThree.isChecked()) {
                         coin += bet;
+                        imgWinner.setImageResource(R.drawable.dog60);
                         Toast.makeText(MainActivity.this, "You guessed correctly!", Toast.LENGTH_SHORT).show();
                     } else {
                         coin -= bet;
                         Toast.makeText(MainActivity.this, "You guessed wrong!", Toast.LENGTH_SHORT).show();
                     }
                     txtCoin.setText(coin + "");
+                    enableCheckbox();
                 }
 
                 if (sbFour.getProgress() >= sbFour.getMax()) {
@@ -94,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (cbFour.isChecked()) {
                         coin += bet;
+                        imgWinner.setImageResource(R.drawable.mouse60);
                         Toast.makeText(MainActivity.this, "You guessed correctly!", Toast.LENGTH_SHORT).show();
                     } else {
                         coin -= bet;
@@ -101,12 +115,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     txtCoin.setText(coin + "");
+                    enableCheckbox();
                 }
 
                 sbOne.setProgress(sbOne.getProgress() + one);
-                sbTwo.setProgress(sbOne.getProgress() + two);
-                sbThree.setProgress(sbOne.getProgress() + three);
-                sbFour.setProgress(sbOne.getProgress() + four);
+                sbTwo.setProgress(sbTwo.getProgress() + two);
+                sbThree.setProgress(sbThree.getProgress() + three);
+                sbFour.setProgress(sbFour.getProgress() + four);
             }
 
             @Override
@@ -118,28 +133,28 @@ public class MainActivity extends AppCompatActivity {
         cbOne.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                disableCheckbox();
+                disableCheckedCheckbox();
             }
         });
 
         cbTwo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                disableCheckbox();
+                disableCheckedCheckbox();
             }
         });
 
         cbThree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                disableCheckbox();
+                disableCheckedCheckbox();
             }
         });
 
         cbFour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                disableCheckbox();
+                disableCheckedCheckbox();
             }
         });
 
@@ -151,11 +166,17 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Please input the coin bet to playing", Toast.LENGTH_SHORT).show();
                 } else {
                     bet = Integer.parseInt(betString);
+                    txtBet.setText(betString);
                 }
 
                 if ((cbOne.isChecked() || cbTwo.isChecked() || cbThree.isChecked()) && bet > 0) {
                     edTextBet.setEnabled(false);
+                    sbOne.setEnabled(false);
+                    sbTwo.setEnabled(false);
+                    sbThree.setEnabled(false);
+                    sbFour.setEnabled(false);
                     countDownTimer.start();
+                    disableCheckbox();
                 } else {
                     Toast.makeText(MainActivity.this, "Please bet before playing!", Toast.LENGTH_SHORT).show();
                 }
@@ -176,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void mapping() {
         txtCoin = (TextView) findViewById(R.id.coin);
+        txtBet = (TextView) findViewById(R.id.textViewBet);
         edTextBet = (EditText) findViewById(R.id.editTextBet);
         cbOne = (CheckBox) findViewById(R.id.checkBoxOne);
         cbTwo = (CheckBox) findViewById(R.id.checkBoxTwo);
@@ -187,9 +209,10 @@ public class MainActivity extends AppCompatActivity {
         sbFour = (SeekBar) findViewById(R.id.seekBarFour);
         btnStart = (Button) findViewById(R.id.btnPLay);
         btnReset = (Button) findViewById(R.id.btnReset);
+        imgWinner = (ImageView) findViewById(R.id.imgWinner);
     }
 
-    private void disableCheckbox() {
+    private void disableCheckedCheckbox() {
         if(cbOne.isChecked()) {
            cbTwo.setChecked(false);
            cbThree.setChecked(false);
@@ -210,6 +233,20 @@ public class MainActivity extends AppCompatActivity {
             cbTwo.setChecked(false);
             cbThree.setChecked(false);
         }
+    }
+
+    private void disableCheckbox() {
+        cbOne.setEnabled(false);
+        cbTwo.setEnabled(false);
+        cbThree.setEnabled(false);
+        cbFour.setEnabled(false);
+    }
+
+    private void enableCheckbox() {
+        cbOne.setEnabled(true);
+        cbTwo.setEnabled(true);
+        cbThree.setEnabled(true);
+        cbFour.setEnabled(true);
     }
 
 }
