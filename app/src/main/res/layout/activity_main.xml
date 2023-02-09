@@ -56,7 +56,6 @@
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:background="@drawable/border"
-                android:src="@drawable/mouse60"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
@@ -178,76 +177,88 @@
         android:background="@drawable/racetrack"
         app:layout_constraintLeft_toRightOf="@+id/line"
         tools:ignore="MissingConstraints">
+
         <CheckBox
             android:id="@+id/checkBoxOne"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_above="@+id/checkBoxTwo"/>
+            android:layout_above="@+id/checkBoxTwo"
+            android:layout_marginBottom="5dp" />
+
         <CheckBox
             android:id="@+id/checkBoxTwo"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:layout_above="@+id/checkBoxThree"
             android:layout_marginTop="3dp"
-            android:layout_above="@+id/checkBoxThree"/>
+            android:layout_marginBottom="5dp" />
+
         <CheckBox
             android:id="@+id/checkBoxThree"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:layout_above="@+id/checkBoxFour"
             android:layout_marginTop="3dp"
-            android:layout_above="@+id/checkBoxFour"/>
+            android:layout_marginBottom="20dp" />
+
         <CheckBox
             android:id="@+id/checkBoxFour"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="3dp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_marginBottom="6dp" />
 
         <SeekBar
             android:id="@+id/seekBarFour"
-            android:progressDrawable="@android:color/transparent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="1dp"
+            android:layout_marginBottom="7dp"
             android:layout_toRightOf="@+id/checkBoxFour"
-            android:thumb="@drawable/mouse60"
-            android:paddingEnd="40dp"
             android:paddingStart="40dp"
-            />
-        <SeekBar
+            android:paddingEnd="40dp"
             android:progressDrawable="@android:color/transparent"
+            android:thumb="@drawable/mouse60" />
+
+        <SeekBar
             android:id="@+id/seekBarThree"
-            android:layout_above="@+id/seekBarFour"
-            android:layout_toRightOf="@+id/checkBoxThree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:thumb="@drawable/dog60"
+            android:layout_above="@+id/seekBarFour"
+            android:layout_marginLeft="1dp"
+            android:layout_marginBottom="33dp"
+            android:layout_toRightOf="@+id/checkBoxThree"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
-            android:layout_marginBottom="15dp"
-            />
+            android:progressDrawable="@android:color/transparent"
+            android:thumb="@drawable/dog60" />
+
         <SeekBar
             android:id="@+id/seekBarTwo"
-            android:progressDrawable="@android:color/transparent"
-            android:layout_above="@+id/seekBarThree"
-            android:layout_toRightOf="@+id/checkBoxTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:thumb="@drawable/dog_green60"
+            android:layout_above="@+id/seekBarThree"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="26dp"
+            android:layout_toRightOf="@+id/checkBoxTwo"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
-            android:layout_marginBottom="24dp"
-            />
+            android:progressDrawable="@android:color/transparent"
+            android:thumb="@drawable/dog_green60" />
+
         <SeekBar
             android:id="@+id/seekBarOne"
-            android:progressDrawable="@android:color/transparent"
-            android:layout_above="@+id/seekBarTwo"
-            android:layout_toRightOf="@+id/checkBoxOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:thumb="@drawable/duck60"
+            android:layout_above="@+id/seekBarTwo"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toRightOf="@+id/checkBoxOne"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
-            android:layout_marginBottom="18dp"
-            />
+            android:progressDrawable="@android:color/transparent"
+            android:thumb="@drawable/duck60" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
